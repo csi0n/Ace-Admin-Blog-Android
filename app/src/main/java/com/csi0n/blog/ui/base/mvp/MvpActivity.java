@@ -25,8 +25,8 @@ public abstract class MvpActivity<P extends BaseMvpPresenter<V>, V extends IMvpV
             presenter.registerEventBusListener(this);
             presenter.create(savedInstanceState);
             presenter.initInActivity(savedInstanceState, getIntent());
+            afterMvpInit();
         }
-        afterMvpInit();
     }
 
     public void afterMvpInit() {

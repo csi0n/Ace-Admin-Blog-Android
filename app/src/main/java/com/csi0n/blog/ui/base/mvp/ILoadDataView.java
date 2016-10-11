@@ -5,4 +5,7 @@ package com.csi0n.blog.ui.base.mvp;
  */
 
 public interface ILoadDataView extends IView{
+    void showLoading();
+    void hideLoading();
+    void showError(String message);
 }

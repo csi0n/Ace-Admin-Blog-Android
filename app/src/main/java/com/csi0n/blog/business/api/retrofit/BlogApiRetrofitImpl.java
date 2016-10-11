@@ -3,8 +3,11 @@ package com.csi0n.blog.business.api.retrofit;
 import android.util.Log;
 
 import com.csi0n.blog.business.api.BlogApi;
+import com.csi0n.blog.business.pojo.request.GetHomeIndexRequest;
+import com.csi0n.blog.business.pojo.response.GetHomeIndexResponse;
 import com.csi0n.blog.core.io.CLog;
 import com.csi0n.blog.core.io.FileUtils;
+import com.csi0n.blog.core.net.NetWorkException;
 import com.csi0n.blog.core.string.Constants;
 
 import java.io.IOException;
@@ -48,5 +51,16 @@ public class BlogApiRetrofitImpl implements BlogApi {
                 .addConverterFactory(GsonConverterFactory.create())
                 .build()
                 .create(IBlogHttpApi.class);
+    }
+
+    @Override
+    public GetHomeIndexResponse GetHomeIndexResponse(GetHomeIndexRequest getHomeIndexRequest) throws NetWorkException {
+        CLog.i("BlogApiRetrofitImpl.GetHomeIndexResponse request = " + getHomeIndexRequest);
+        return new RetrofitAdapter<GetHomeIndexResponse>() {
+            @Override
+            GetHomeIndexResponse call() throws Exception {
+                return httpApi.GetHomeIndexResponse().execute().body();
+            }
+        }.get();
     }
 }
