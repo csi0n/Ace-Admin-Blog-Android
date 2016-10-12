@@ -83,8 +83,8 @@ public class AdvancedSubscriber<T extends BaseResponse> extends SimpleSubscriber
                 toastText = "未知主机";
             } else if (detailException instanceof TimeoutException || detailException instanceof InterruptedIOException) {
                 toastText = "超时";
-            } else if (detailException instanceof JSONException) {
-                toastText = "解析错误1";
+            } else if (detailException instanceof JSONException ) {
+                toastText = "解析错误";
             } else if (detailException instanceof JsonParseException) {
                 toastText = "解析错误2";
             }

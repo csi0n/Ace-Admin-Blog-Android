@@ -12,7 +12,6 @@ import retrofit2.http.GET;
  */
 
 public interface IBlogHttpApi {
-    @FormUrlEncoded
     @GET("home")
     Call<GetHomeIndexResponse> GetHomeIndexResponse();
 }

@@ -4,6 +4,8 @@ import android.content.Context;
 import android.content.Intent;
 import android.os.Bundle;
 
+import com.csi0n.blog.app.InjectHelp;
+
 import org.greenrobot.eventbus.EventBus;
 import org.greenrobot.eventbus.EventBusException;
 import org.greenrobot.eventbus.Subscribe;
@@ -25,14 +27,17 @@ public class BaseMvpPresenter<V extends IMvpView> implements IMvpPresenter {
         this.loadDataView = loadDataView;
         this.view = view;
         this.mContext = loadDataView.getContext();
+        InjectHelp.injectMembersWithoutViews(this);
     }
 
-    public void initInActivity(Bundle saveInstanceState, Intent activityIntent){
+    public void initInActivity(Bundle saveInstanceState, Intent activityIntent) {
 
     }
-    public void initInFragment(Bundle savedInstanceState,Bundle fragmentArguments){
+
+    public void initInFragment(Bundle savedInstanceState, Bundle fragmentArguments) {
 
     }
+
     @Override
     public void create(Bundle savedInstanceState) {
         registerEventBusListener(this);
@@ -74,6 +79,7 @@ public class BaseMvpPresenter<V extends IMvpView> implements IMvpPresenter {
         }
         return eventBus;
     }
+
     public void registerEventBusListener(Object object) {
         if (getEventBus() != null) {
             try {
@@ -89,8 +95,9 @@ public class BaseMvpPresenter<V extends IMvpView> implements IMvpPresenter {
             getEventBus().unregister(object);
         }
     }
+
     @Subscribe
-    public void onEvent(Object object){
+    public void onEvent(Object object) {
 
     }
 }

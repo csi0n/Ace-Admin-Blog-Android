@@ -7,6 +7,6 @@ package com.csi0n.blog.core.string;
 public class Constants {
     public static final String Preference_Name = "PBlog";
     public static final String cacheFolder = "Cache";
-    public static final String BaseUrl = "http://blog.csi0n.com/api/blog/";
+    public static final String BaseUrl = "http://10.0.1.31/blog/public/index.php/api/blog/";
     public static final int CODE_SUCCESS = 200;
 }

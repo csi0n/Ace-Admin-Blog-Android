@@ -18,6 +18,12 @@ public class SplashActivity extends MvpActivity<SplashPresenter, SplashPresenter
     }
 
     @Override
+    protected void onCreate(@Nullable Bundle savedInstanceState) {
+        super.onCreate(savedInstanceState);
+        start();
+    }
+
+    @Override
     public void start() {
         uiHandler.postDelayed(new Runnable() {
             @Override

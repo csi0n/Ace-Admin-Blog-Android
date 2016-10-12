@@ -11,7 +11,14 @@
     <style name="NoTitle" parent="Theme.AppCompat.NoActionBar">
         <item name="android:windowNoTitle">true</item>
     </style>
+    <style name="PopupOverlay" parent="ThemeOverlay.AppCompat.Light">
 
+    </style>
+
+    <style name="ToolbarTheme" parent="@style/ThemeOverlay.AppCompat.ActionBar">
+        <item name="actionMenuTextColor">@color/white</item> <!--  敲定颜色-->
+        <item name="android:textSize">18sp</item> <!--  搞掂字体大小-->
+    </style>
     <style name="ProgressLoadingDialog">
         <item name="android:windowBackground">@android:color/transparent</item>
         <item name="android:windowFrame">@null</item>

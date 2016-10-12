@@ -16,11 +16,6 @@ public class MainPresenter extends BaseMvpPresenter<MainPresenter.IMain> {
     @Inject
     BlogDomain blogDomain;
 
-    public Observable<GetHomeIndexResponse> doGetHomeIndex() {
-        return blogDomain.GetHomeIndex();
-    }
-
     public interface IMain extends IMvpView {
-        void GetHomeIndex();
     }
 }

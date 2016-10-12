@@ -29,4 +29,6 @@ public class Cate extends BaseModel {
     public String createdAt;
     @SerializedName("updated_at")
     public String updatedAt;
+    @SerializedName("articles")
+    public Article[] articles;
 }

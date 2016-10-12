@@ -15,12 +15,14 @@ import com.csi0n.blog.ui.base.mvp.ILoadDataView;
 import com.csi0n.blog.ui.widget.ProgressLoading;
 
 import butterknife.ButterKnife;
+import roboguice.activity.RoboActivity;
+import roboguice.activity.RoboFragmentActivity;
 
 /**
  * Created by csi0n on 10/9/16.
  */
 
-public abstract class BaseActivity extends AppCompatActivity implements ILoadDataView {
+public abstract class BaseActivity extends RoboFragmentActivity implements ILoadDataView {
     protected abstract int GetConLayout();
 
     protected Handler uiHandler;
@@ -39,6 +41,10 @@ public abstract class BaseActivity extends AppCompatActivity implements ILoadDat
     public void skipActivity(Class<?> classz) {
         startActivity(this, classz, null);
         finish();
+    }
+
+    public void startActivity(Class<?> classz) {
+        startActivity(this, classz, null);
     }
 
     private void startActivity(Context context, Class<?> classz, Bundle bundle) {
@@ -71,7 +77,6 @@ public abstract class BaseActivity extends AppCompatActivity implements ILoadDat
         Toast.makeText(this, str, Toast.LENGTH_SHORT).show();
     }
 
-    @Nullable
     public void showToast(int str) {
         showToast(App.getInstance().getString(str));
     }

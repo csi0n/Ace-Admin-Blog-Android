@@ -40,5 +40,5 @@ public class Article extends BaseModel {
     @SerializedName("updated_at")
     public String updatedAt;
     @SerializedName("tags")
-    public Tag tags;
+    public Tag[] tags;
 }
