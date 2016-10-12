@@ -36,6 +36,7 @@ public abstract class MvpFragment<P extends BaseMvpPresenter, V extends IMvpView
             presenter.create(savedInstanceState);
             presenter.initInFragment(savedInstanceState, getArguments());
         }
+        afterMvpInit(view,savedInstanceState);
     }
 
     /**
@@ -44,6 +45,10 @@ public abstract class MvpFragment<P extends BaseMvpPresenter, V extends IMvpView
      * @param savedInstanceState savedInstanceState
      */
     protected void beforeMvpInit(Bundle savedInstanceState) {
+
+    }
+
+    protected void afterMvpInit(View view,Bundle savedInstanceState){
 
     }
 
