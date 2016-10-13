@@ -14,6 +14,7 @@ import com.csi0n.blog.business.pojo.model.Cate;
 import com.csi0n.blog.business.pojo.response.GetHomeIndexResponse;
 import com.csi0n.blog.core.io.CLog;
 import com.csi0n.blog.core.my.MyUtils;
+import com.csi0n.blog.core.string.Constants;
 import com.csi0n.blog.ui.adapter.BaseFragmentAdapter;
 import com.csi0n.blog.ui.base.mvp.MvpFragment;
 
@@ -84,9 +85,7 @@ public class HomeFragment extends MvpFragment<HomePresenter, HomePresenter.IHome
     }
 
     private HomePageFragment createListFragments(Cate cate) {
-        HomePageFragment fragment = new HomePageFragment();
-        Bundle bundle = new Bundle();
-        fragment.setArguments(bundle);
+        HomePageFragment fragment = HomePageFragment.newInstance(cate);
         return fragment;
     }
 }

@@ -1,5 +1,7 @@
 package com.csi0n.blog.ui.fragment;
 
+import android.support.v4.widget.SwipeRefreshLayout;
+
 import com.csi0n.blog.business.callback.AdvancedSubscriber;
 import com.csi0n.blog.business.domain.BlogDomain;
 import com.csi0n.blog.business.pojo.response.GetHomeIndexResponse;
@@ -17,6 +19,6 @@ public class HomePagePresenter extends BaseMvpPresenter<HomePagePresenter.IHomeP
     BlogDomain blogDomain;
 
 
-    public interface IHomePage extends IMvpView {
+    public interface IHomePage extends IMvpView,SwipeRefreshLayout.OnRefreshListener{
     }
 }

@@ -24,4 +24,14 @@ public class Tag extends BaseModel{
     public String createdAt;
     @SerializedName("updated_at")
     public String updatedAt;
+
+    @Override
+    public String toString() {
+        return "Tag{" +
+                "id=" + id +
+                ", name='" + name + '\'' +
+                ", createdAt='" + createdAt + '\'' +
+                ", updatedAt='" + updatedAt + '\'' +
+                '}';
+    }
 }

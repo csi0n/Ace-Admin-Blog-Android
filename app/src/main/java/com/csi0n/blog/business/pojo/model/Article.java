@@ -3,6 +3,8 @@ package com.csi0n.blog.business.pojo.model;
 import com.csi0n.blog.business.pojo.model.ext.BaseModel;
 import com.google.gson.annotations.SerializedName;
 
+import java.util.Arrays;
+
 /**
  * Created by csi0n on 10/11/16.
  */
@@ -41,4 +43,20 @@ public class Article extends BaseModel {
     public String updatedAt;
     @SerializedName("tags")
     public Tag[] tags;
+
+    @Override
+    public String toString() {
+        return "Article{" +
+                "id=" + id +
+                ", thumb='" + thumb + '\'' +
+                ", title='" + title + '\'' +
+                ", userId=" + userId +
+                ", cateId=" + cateId +
+                ", content='" + content + '\'' +
+                ", sort=" + sort +
+                ", createdAt='" + createdAt + '\'' +
+                ", updatedAt='" + updatedAt + '\'' +
+                ", tags=" + Arrays.toString(tags) +
+                '}';
+    }
 }
