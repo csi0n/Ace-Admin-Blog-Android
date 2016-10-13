@@ -18,7 +18,6 @@ public class HomePagePresenter extends BaseMvpPresenter<HomePagePresenter.IHomeP
     @Inject
     BlogDomain blogDomain;
 
-
     public interface IHomePage extends IMvpView,SwipeRefreshLayout.OnRefreshListener{
     }
 }

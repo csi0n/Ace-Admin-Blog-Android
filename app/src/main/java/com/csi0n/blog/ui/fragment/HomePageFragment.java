@@ -11,11 +11,13 @@ import android.view.ViewGroup;
 import com.csi0n.blog.R;
 import com.csi0n.blog.business.pojo.model.Cate;
 import com.csi0n.blog.core.string.Constants;
+import com.csi0n.blog.ui.HomePageDetailActivity;
 import com.csi0n.blog.ui.adapter.HomePageAdapter;
 import com.csi0n.blog.ui.base.mvp.MvpFragment;
 
 import butterknife.Bind;
 import butterknife.ButterKnife;
+import butterknife.OnItemClick;
 
 /**
  * Created by csi0n on 10/12/16.
@@ -26,6 +28,7 @@ public class HomePageFragment extends MvpFragment<HomePagePresenter, HomePagePre
     RecyclerView recyclerView;
     @Bind(R.id.swipeRefreshLayout)
     SwipeRefreshLayout swipeRefreshLayout;
+
 
     HomePageAdapter adapter;
 
@@ -48,10 +51,10 @@ public class HomePageFragment extends MvpFragment<HomePagePresenter, HomePagePre
     @Override
     protected void afterMvpInit(View view, Bundle savedInstanceState) {
         super.afterMvpInit(view, savedInstanceState);
-        currentCate = (Cate) savedInstanceState.getSerializable(Constants.KEY_CATE);
+        currentCate = (Cate) getArguments().getSerializable(Constants.KEY_CATE);
         if (currentCate == null)
             return;
-        adapter = new HomePageAdapter(mvpActivity);
+        adapter = new HomePageAdapter(this);
         recyclerView.setLayoutManager(new LinearLayoutManager(getContext(), LinearLayoutManager.VERTICAL, false));
         recyclerView.setAdapter(adapter);
         swipeRefreshLayout.setColorSchemeResources(R.color.colorPrimary);
@@ -60,8 +63,14 @@ public class HomePageFragment extends MvpFragment<HomePagePresenter, HomePagePre
         adapter.notifyDataSetChanged(currentCate.articles);
     }
 
+    public void startDetail(int position){
+        Bundle bundle = new Bundle();
+        bundle.putSerializable(Constants.KEY_ARTICLE,currentCate.articles[position]);
+        mvpActivity.startActivity(HomePageDetailActivity.class,bundle);
+    }
     @Override
     public void onRefresh() {
-
+        swipeRefreshLayout.setRefreshing(false);
+        adapter.notifyDataSetChanged(currentCate.articles);
     }
 }

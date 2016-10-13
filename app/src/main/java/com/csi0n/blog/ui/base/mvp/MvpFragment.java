@@ -149,6 +149,10 @@ public abstract class MvpFragment<P extends BaseMvpPresenter, V extends IMvpView
         mvpActivity.startActivity(classz);
     }
 
+    public void startActivity(Class<?> classz,Bundle bundle){
+        mvpActivity.startActivity(classz, bundle);
+    }
+
     public void showError(String message) {
         mvpActivity.showError(message);
     }

@@ -6,6 +6,7 @@ import android.os.Bundle;
 import android.os.Handler;
 import android.support.annotation.Nullable;
 import android.support.v7.app.AppCompatActivity;
+import android.view.MenuItem;
 import android.widget.Toast;
 
 import com.csi0n.blog.R;
@@ -15,6 +16,7 @@ import com.csi0n.blog.ui.base.mvp.ILoadDataView;
 import com.csi0n.blog.ui.widget.ProgressLoading;
 
 import butterknife.ButterKnife;
+import roboguice.activity.RoboActionBarActivity;
 import roboguice.activity.RoboActivity;
 import roboguice.activity.RoboFragmentActivity;
 
@@ -22,7 +24,7 @@ import roboguice.activity.RoboFragmentActivity;
  * Created by csi0n on 10/9/16.
  */
 
-public abstract class BaseActivity extends RoboFragmentActivity implements ILoadDataView {
+public abstract class BaseActivity extends RoboActionBarActivity implements ILoadDataView {
     protected abstract int GetConLayout();
 
     protected Handler uiHandler;
@@ -38,6 +40,10 @@ public abstract class BaseActivity extends RoboFragmentActivity implements ILoad
         AppManager.getAppManager().addActivity(this);
     }
 
+    public Bundle GetBundle() {
+        return getIntent().getExtras();
+    }
+
     public void skipActivity(Class<?> classz) {
         startActivity(this, classz, null);
         finish();
@@ -45,6 +51,10 @@ public abstract class BaseActivity extends RoboFragmentActivity implements ILoad
 
     public void startActivity(Class<?> classz) {
         startActivity(this, classz, null);
+    }
+
+    public void startActivity(Class<?> classz, Bundle bundle) {
+        startActivity(this, classz, bundle);
     }
 
     private void startActivity(Context context, Class<?> classz, Bundle bundle) {
@@ -79,5 +89,14 @@ public abstract class BaseActivity extends RoboFragmentActivity implements ILoad
 
     public void showToast(int str) {
         showToast(App.getInstance().getString(str));
+    }
+
+    @Override
+    public boolean onOptionsItemSelected(MenuItem item) {
+        if (item.getItemId() == android.R.id.home) {
+            finish();
+            return true;
+        }
+        return super.onOptionsItemSelected(item);
     }
 }

@@ -35,7 +35,13 @@
                 <category android:name="android.intent.category.LAUNCHER" />
             </intent-filter>
         </activity>
-        <activity android:name=".ui.MainActivity" android:theme="@style/NoTitle"></activity>
+        <activity
+            android:name=".ui.MainActivity"
+            android:theme="@style/NoTitle"></activity>
+        <activity
+            android:name=".ui.HomePageDetailActivity"
+            android:theme="@style/Theme.AppCompat.Light.NoActionBar">
+        </activity>
     </application>
 
 </manifest>

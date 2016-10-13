@@ -16,6 +16,9 @@ public class SplashPresenter extends BaseMvpPresenter<SplashPresenter.ISplash> {
     @Inject
     BlogDomain blogDomain;
 
+    public void init(){
+        view.start();
+    }
     public interface ISplash extends IMvpView {
         void start();
     }
