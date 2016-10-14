@@ -57,7 +57,7 @@ public class HomePageDetailActivity extends MvpActivity<HomePageDetailPresenter,
         currentArt = (Article) GetBundle().getSerializable(Constants.KEY_ARTICLE);
         if (currentArt == null)
             return;
-        presenter.init();
+        presenter.init(currentArt);
     }
 
     @Override
@@ -68,9 +68,7 @@ public class HomePageDetailActivity extends MvpActivity<HomePageDetailPresenter,
             actionBar.setDisplayHomeAsUpEnabled(true);
         }
         //setHasOptionsMenu(true);
-        nestedView.setOverScrollMode(View.OVER_SCROLL_NEVER);
         //mNestedScrollView.setElevation(0);
-        wvNews.setOverScrollMode(View.OVER_SCROLL_NEVER);
         //mWvNews.setElevation(0);
         wvNews.getSettings().setLoadsImagesAutomatically(true);
         //设置 缓存模式
@@ -81,15 +79,16 @@ public class HomePageDetailActivity extends MvpActivity<HomePageDetailPresenter,
     }
 
     @Override
-    public void initData() {
-        List<String> strings = new ArrayList<>();
-        for (int i = 0; i < currentArt.tags.length; i++) {
-            strings.add(currentArt.tags[i].name);
-        }
-        if (strings.size() == 0)
+    public void initTagGroup(List<String> strings) {
+        if (strings != null && strings.size() == 0) {
             cvTag.setVisibility(View.GONE);
-        else
+        } else {
             tagGroup.setTags(strings);
+        }
+    }
+
+    @Override
+    public void initData(Article article) {
         Picasso.with(this)
                 .load(Constants.BaseImgUrl + currentArt.thumb)
                 .placeholder(R.mipmap.ic_launcher)
