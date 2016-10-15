@@ -13,6 +13,7 @@ import com.csi0n.blog.business.pojo.model.Cate;
 import com.csi0n.blog.core.string.Constants;
 import com.csi0n.blog.ui.HomePageDetailActivity;
 import com.csi0n.blog.ui.adapter.HomePageAdapter;
+import com.csi0n.blog.ui.base.common.FragmentLaunch;
 import com.csi0n.blog.ui.base.mvp.MvpFragment;
 
 import butterknife.Bind;
@@ -63,11 +64,17 @@ public class HomePageFragment extends MvpFragment<HomePagePresenter, HomePagePre
         adapter.notifyDataSetChanged(currentCate.articles);
     }
 
-    public void startDetail(int position){
+    public void startDetail(int position) {
+        HomePageDetailFragment detailFragment = new HomePageDetailFragment();
         Bundle bundle = new Bundle();
-        bundle.putSerializable(Constants.KEY_ARTICLE,currentCate.articles[position]);
-        mvpActivity.startActivity(HomePageDetailActivity.class,bundle);
+        bundle.putSerializable(Constants.KEY_ARTICLE, currentCate.articles[position]);
+        detailFragment.setArguments(bundle);
+        FragmentLaunch.launch(mvpActivity, detailFragment);
+//        Bundle bundle = new Bundle();
+//        bundle.putSerializable(Constants.KEY_ARTICLE,currentCate.articles[position]);
+//        mvpActivity.startActivity(HomePageDetailActivity.class,bundle);
     }
+
     @Override
     public void onRefresh() {
         swipeRefreshLayout.setRefreshing(false);

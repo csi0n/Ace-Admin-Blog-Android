@@ -10,10 +10,12 @@ import com.csi0n.blog.ui.base.BaseFragment;
 
 import org.greenrobot.eventbus.Subscribe;
 
+import java.io.Serializable;
+
 /**
  * Created by chqss on 2016/5/1 0001.
  */
-public abstract class MvpFragment<P extends BaseMvpPresenter, V extends IMvpView> extends BaseFragment {
+public abstract class MvpFragment<P extends BaseMvpPresenter, V extends IMvpView> extends BaseFragment implements Serializable {
     protected MvpActivity mvpActivity;
     protected P presenter;
     protected V view;
