@@ -7,8 +7,8 @@ package com.csi0n.blog.core.string;
 public class Constants {
     public static final String Preference_Name = "PBlog";
     public static final String cacheFolder = "Cache";
-    public static final String BaseUrl = "http://192.168.56.1/blog/public/index.php/api/blog/";
-    public static final String BaseImgUrl = "http://192.168.56.1/blog/storage/resource/";
+    public static final String BaseUrl = "http://blog.local.com/api/blog/";
+    public static final String BaseImgUrl = "http://img.blog.com/";
     public static final int CODE_SUCCESS = 200;
     public static final String KEY_CATE = "key_cate";
     public static final String KEY_ARTICLE = "key_article";

@@ -4,21 +4,16 @@ import android.os.Bundle;
 import android.support.v4.widget.SwipeRefreshLayout;
 import android.support.v7.widget.LinearLayoutManager;
 import android.support.v7.widget.RecyclerView;
-import android.view.LayoutInflater;
 import android.view.View;
-import android.view.ViewGroup;
 
 import com.csi0n.blog.R;
 import com.csi0n.blog.business.pojo.model.Cate;
 import com.csi0n.blog.core.string.Constants;
-import com.csi0n.blog.ui.HomePageDetailActivity;
 import com.csi0n.blog.ui.adapter.HomePageAdapter;
-import com.csi0n.blog.ui.base.common.FragmentLaunch;
+import com.csi0n.blog.ui.base.common.FragmentLauncher;
 import com.csi0n.blog.ui.base.mvp.MvpFragment;
 
 import butterknife.Bind;
-import butterknife.ButterKnife;
-import butterknife.OnItemClick;
 
 /**
  * Created by csi0n on 10/12/16.
@@ -65,14 +60,10 @@ public class HomePageFragment extends MvpFragment<HomePagePresenter, HomePagePre
     }
 
     public void startDetail(int position) {
-        HomePageDetailFragment detailFragment = new HomePageDetailFragment();
-        Bundle bundle = new Bundle();
-        bundle.putSerializable(Constants.KEY_ARTICLE, currentCate.articles[position]);
-        detailFragment.setArguments(bundle);
-        FragmentLaunch.launch(mvpActivity, detailFragment);
-//        Bundle bundle = new Bundle();
-//        bundle.putSerializable(Constants.KEY_ARTICLE,currentCate.articles[position]);
-//        mvpActivity.startActivity(HomePageDetailActivity.class,bundle);
+        HomePageDetailFragment.HomePageDetailExtraParam extraParam=new HomePageDetailFragment.HomePageDetailExtraParam();
+        extraParam.setFragmentClass(HomePageDetailFragment.class);
+        extraParam.article=currentCate.articles[position];
+        FragmentLauncher.launch(getContext(),extraParam);
     }
 
     @Override

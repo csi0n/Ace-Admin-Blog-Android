@@ -16,6 +16,8 @@ import com.csi0n.blog.R;
 import com.csi0n.blog.business.pojo.model.Article;
 import com.csi0n.blog.core.string.Constants;
 import com.csi0n.blog.core.string.HtmlUtil;
+import com.csi0n.blog.ui.base.common.CommonExtraParam;
+import com.csi0n.blog.ui.base.common.CommonMvpFragment;
 import com.csi0n.blog.ui.base.mvp.MvpFragment;
 import com.squareup.picasso.Picasso;
 
@@ -28,7 +30,23 @@ import me.gujun.android.taggroup.TagGroup;
  * Created by chqss on 2016/10/15.
  */
 
-public class HomePageDetailFragment extends MvpFragment<HomePageDetailPresenter,HomePageDetailPresenter.IHomePageDetail>implements HomePageDetailPresenter.IHomePageDetail {
+public class HomePageDetailFragment extends CommonMvpFragment<HomePageDetailPresenter,HomePageDetailPresenter.IHomePageDetail> implements HomePageDetailPresenter.IHomePageDetail {
+    @Override
+    protected void init(Bundle savedInstanceState) {
+        extraParam=getReqExtraParam();
+        presenter.init(extraParam.article);
+    }
+
+    public static class HomePageDetailExtraParam extends CommonExtraParam{
+        public Article article;
+
+        @Override
+        public String toString() {
+            return "HomePageDetailExtraParam{" +
+                    "article=" + article +
+                    '}';
+        }
+    }
     @Bind(R.id.iv_header)
     ImageView ivHeader;
     @Bind(R.id.tv_source)
@@ -46,20 +64,12 @@ public class HomePageDetailFragment extends MvpFragment<HomePageDetailPresenter,
     @Bind(R.id.cv_tag)
     CardView cvTag;
 
-    Article currentArt;
+    HomePageDetailExtraParam extraParam;
     @Override
     protected int getFragmentLayout() {
         return R.layout.frag_home_page_detail;
     }
 
-    @Override
-    protected void afterMvpInit(View view, Bundle savedInstanceState) {
-        super.afterMvpInit(view, savedInstanceState);
-        currentArt = (Article) savedInstanceState.getSerializable(Constants.KEY_ARTICLE);
-        if (currentArt == null)
-            return;
-        presenter.init(currentArt);
-    }
 
     @Override
     public void initView() {
@@ -76,7 +86,7 @@ public class HomePageDetailFragment extends MvpFragment<HomePageDetailPresenter,
         wvNews.getSettings().setCacheMode(WebSettings.LOAD_DEFAULT);
         // 开启 DOM storage API 功能
         wvNews.getSettings().setDomStorageEnabled(true);
-        collapsingToolbarLayout.setTitle(currentArt.title);
+        collapsingToolbarLayout.setTitle(extraParam.article.title);
     }
 
     @Override
@@ -91,9 +101,9 @@ public class HomePageDetailFragment extends MvpFragment<HomePageDetailPresenter,
     @Override
     public void initData(Article article) {
         Picasso.with(mvpActivity)
-                .load(Constants.BaseImgUrl + currentArt.thumb)
+                .load(Constants.BaseImgUrl + extraParam.article.thumb)
                 .placeholder(R.mipmap.ic_launcher)
                 .into(ivHeader);
-        wvNews.loadData(currentArt.content, HtmlUtil.MIME_TYPE, HtmlUtil.ENCODING);
+        wvNews.loadData(extraParam.article.content, HtmlUtil.MIME_TYPE, HtmlUtil.ENCODING);
     }
 }

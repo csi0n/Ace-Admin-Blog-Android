@@ -15,7 +15,7 @@ import java.io.Serializable;
 /**
  * Created by chqss on 2016/5/1 0001.
  */
-public abstract class MvpFragment<P extends BaseMvpPresenter, V extends IMvpView> extends BaseFragment implements Serializable {
+public abstract class MvpFragment<P extends BaseMvpPresenter, V extends IMvpView> extends BaseFragment  {
     protected MvpActivity mvpActivity;
     protected P presenter;
     protected V view;
