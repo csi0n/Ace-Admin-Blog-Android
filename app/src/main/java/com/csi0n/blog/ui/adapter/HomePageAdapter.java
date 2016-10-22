@@ -14,7 +14,6 @@ import com.csi0n.blog.business.pojo.model.Article;
 import com.csi0n.blog.business.pojo.model.Cate;
 import com.csi0n.blog.business.pojo.response.GetHomeIndexResponse;
 import com.csi0n.blog.core.string.Constants;
-import com.csi0n.blog.ui.HomePageDetailActivity;
 import com.csi0n.blog.ui.fragment.HomePageFragment;
 import com.squareup.picasso.Picasso;
 
