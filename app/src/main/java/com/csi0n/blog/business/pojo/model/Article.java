@@ -33,8 +33,14 @@ public class Article extends BaseModel {
     public int userId;
     @SerializedName("cate_id")
     public int cateId;
+    @SerializedName("describe")
+    public String describe;
     @SerializedName("content")
     public String content;
+    @SerializedName("content_md")
+    public String content_md;
+    @SerializedName("css")
+    public String css;
     @SerializedName("sort")
     public int sort;
     @SerializedName("created_at")

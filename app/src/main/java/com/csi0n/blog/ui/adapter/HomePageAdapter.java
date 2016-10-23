@@ -15,6 +15,8 @@ import com.csi0n.blog.business.pojo.model.Cate;
 import com.csi0n.blog.business.pojo.response.GetHomeIndexResponse;
 import com.csi0n.blog.core.string.Constants;
 import com.csi0n.blog.ui.fragment.HomePageFragment;
+import com.csi0n.blog.ui.widget.BasePicCallback;
+import com.squareup.picasso.Callback;
 import com.squareup.picasso.Picasso;
 
 import java.lang.reflect.Array;
@@ -92,13 +94,11 @@ public class HomePageAdapter extends RecyclerView.Adapter {
         void bind(Article article) {
             itemView.setTag(article);
             tvTitle.setText(article.title);
-            tvContent.setText(article.content);
-            if (!article.thumb.isEmpty()) {
-                Picasso.with(icon.getContext())
-                        .load(Constants.BaseImgUrl + article.thumb)
-                        .placeholder(R.mipmap.ic_launcher)
-                        .into(icon);
-            }
+            tvContent.setText(article.describe);
+            Picasso.with(icon.getContext())
+                    .load(Constants.BaseImgUrl + article.thumb)
+                    .placeholder(R.mipmap.ic_launcher)
+                    .into(icon, new BasePicCallback(icon,R.mipmap.bg));
             if (article.tags != null) {
                 ArrayList<String> strings = new ArrayList<>();
                 for (int i = 0; i < article.tags.length; i++) {

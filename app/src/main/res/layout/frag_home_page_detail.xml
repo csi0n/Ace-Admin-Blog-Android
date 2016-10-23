@@ -16,7 +16,7 @@
             android:layout_height="256dp"
             android:fitsSystemWindows="true"
             android:theme="@style/ThemeOverlay.AppCompat.Dark.ActionBar"
-            app:contentScrim="?attr/colorPrimary"
+            app:contentScrim="@color/colorPrimary"
             app:expandedTitleMarginEnd="96dp"
             app:layout_scrollFlags="scroll|exitUntilCollapsed">
 
