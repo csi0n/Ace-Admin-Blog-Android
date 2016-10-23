@@ -18,7 +18,7 @@ import com.csi0n.blog.core.string.Constants;
 import com.csi0n.blog.core.string.HtmlUtil;
 import com.csi0n.blog.ui.base.common.CommonExtraParam;
 import com.csi0n.blog.ui.base.common.CommonMvpFragment;
-import com.csi0n.blog.ui.base.mvp.MvpFragment;
+import com.csi0n.blog.ui.widget.BasePicCallback;
 import com.squareup.picasso.Picasso;
 
 import java.util.List;
@@ -103,7 +103,8 @@ public class HomePageDetailFragment extends CommonMvpFragment<HomePageDetailPres
         Picasso.with(mvpActivity)
                 .load(Constants.BaseImgUrl + extraParam.article.thumb)
                 .placeholder(R.mipmap.ic_launcher)
-                .into(ivHeader);
-        wvNews.loadData(extraParam.article.content, HtmlUtil.MIME_TYPE, HtmlUtil.ENCODING);
+                .into(ivHeader, new BasePicCallback(ivHeader,R.mipmap.bg));
+        String html=HtmlUtil.createHtmlData(extraParam.article.content,extraParam.article.css);
+        wvNews.loadData(html, HtmlUtil.MIME_TYPE, HtmlUtil.ENCODING);
     }
 }

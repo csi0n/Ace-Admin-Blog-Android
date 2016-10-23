@@ -33,6 +33,8 @@
                 android:layout_weight="1"
                 app:tabBackground="@color/colorPrimary"
                 app:tabTextColor="@color/white"
+                app:tabMode="scrollable"
+                app:textAllCaps="false"
                 app:tabIndicatorColor="@color/white"></android.support.design.widget.TabLayout>
 
         </LinearLayout>

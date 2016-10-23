@@ -17,7 +17,12 @@ public class HtmlUtil {
     private static final String NEEDED_FORMAT_JS_TAG = "<script src=\"%s\"></script>";
 
     public static final String MIME_TYPE = "text/html; charset=utf-8";
+
     public static final String ENCODING = "utf-8";
+
+    public static final String HTML_HEAD="<!DOCTYPE html><meta name=\"viewport\" content=\"width=device-width, initial-scale=1\"><head>%s</head><body>%s";
+
+    public static final String HTML_END="</body></html>";
 
     private HtmlUtil() {
     }
@@ -76,14 +81,10 @@ public class HtmlUtil {
      *
      * @param html string
      * @param css  string
-     * @param js   string
      * @return string
      */
-    private static String createHtmlData(String html, String css, String js) {
-        return css.concat(HIDE_HEADER_STYLE).concat(html).concat(js);
+    public static String createHtmlData(String html, String css) {
+        return String.format(HTML_HEAD, createCssTag(css),html).concat(HTML_END);
     }
 
-    public static String createHtmlData(String string) {
-        return createHtmlData(string, "", "");
-    }
 }

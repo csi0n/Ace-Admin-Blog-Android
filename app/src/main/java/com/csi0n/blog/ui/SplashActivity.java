@@ -30,6 +30,6 @@ public class SplashActivity extends MvpActivity<SplashPresenter, SplashPresenter
             public void run() {
                 skipActivity(MainActivity.class);
             }
-        }, 1000);
+        }, 3000);
     }
 }
