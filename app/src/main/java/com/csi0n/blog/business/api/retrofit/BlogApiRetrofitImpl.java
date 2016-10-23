@@ -5,6 +5,7 @@ import android.util.Log;
 import com.csi0n.blog.business.api.BlogApi;
 import com.csi0n.blog.business.pojo.request.GetHomeIndexRequest;
 import com.csi0n.blog.business.pojo.response.GetHomeIndexResponse;
+import com.csi0n.blog.business.pojo.response.GetTagIndexResponse;
 import com.csi0n.blog.core.io.CLog;
 import com.csi0n.blog.core.io.FileUtils;
 import com.csi0n.blog.core.net.NetWorkException;
@@ -60,6 +61,17 @@ public class BlogApiRetrofitImpl implements BlogApi {
             @Override
             GetHomeIndexResponse call() throws Exception {
                 return httpApi.GetHomeIndexResponse().execute().body();
+            }
+        }.get();
+    }
+
+    @Override
+    public GetTagIndexResponse GetTagIndexResponse(GetTagIndexResponse getTagIndexResponse) throws NetWorkException {
+        CLog.i("BlogApiRetrofitImpl.GetTagIndexResponse request = " + getTagIndexResponse);
+        return new RetrofitAdapter<GetTagIndexResponse>() {
+            @Override
+            GetTagIndexResponse call() throws Exception {
+                return httpApi.GetTagIndexResponse().execute().body();
             }
         }.get();
     }

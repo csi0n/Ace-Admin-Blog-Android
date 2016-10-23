@@ -1,11 +1,34 @@
 <?xml version="1.0" encoding="utf-8"?>
 <RelativeLayout xmlns:android="http://schemas.android.com/apk/res/android"
     android:layout_width="match_parent"
-    android:background="@color/white"
-    android:layout_height="match_parent">
+    android:layout_height="match_parent"
+    android:background="@color/white">
 
     <FrameLayout
         android:id="@+id/fl_body"
         android:layout_width="match_parent"
         android:layout_height="match_parent" />
+
+    <RadioGroup
+        android:id="@+id/rg_bottom"
+        android:layout_width="match_parent"
+        android:layout_height="50dp"
+        android:layout_alignParentBottom="true"
+        android:orientation="horizontal">
+        <!--android:drawableTop="@drawable/footer_home_ico"-->
+        <!-- android:drawableTop="@drawable/rd_selector_search_job"-->
+        <RadioButton
+            android:id="@+id/rd_home"
+            style="@style/style_main_bottom_bar"
+            android:checked="true"
+            android:drawableTop="@drawable/rd_select_home"
+            android:text="首页" />
+
+        <RadioButton
+            android:id="@+id/rd_tag"
+            style="@style/style_main_bottom_bar"
+            android:drawableTop="@drawable/rd_select_tag"
+            android:text="标签" />
+    </RadioGroup>
+
 </RelativeLayout>

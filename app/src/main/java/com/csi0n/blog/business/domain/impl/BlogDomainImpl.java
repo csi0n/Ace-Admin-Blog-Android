@@ -5,6 +5,7 @@ import com.csi0n.blog.business.api.retrofit.IBlogHttpApi;
 import com.csi0n.blog.business.domain.BlogDomain;
 import com.csi0n.blog.business.pojo.request.GetHomeIndexRequest;
 import com.csi0n.blog.business.pojo.response.GetHomeIndexResponse;
+import com.csi0n.blog.business.pojo.response.GetTagIndexResponse;
 import com.csi0n.blog.core.net.NetWorkException;
 import com.google.inject.Inject;
 
@@ -35,6 +36,22 @@ public class BlogDomainImpl implements BlogDomain {
             }
         })
                 .subscribeOn(Schedulers.io())
+                .observeOn(AndroidSchedulers.mainThread());
+    }
+
+    @Override
+    public Observable<GetTagIndexResponse> GetTagIndex() {
+        return Observable.just(new GetTagIndexResponse()).flatMap(new Func1<GetTagIndexResponse, Observable<GetTagIndexResponse>>() {
+            @Override
+            public Observable<GetTagIndexResponse> call(GetTagIndexResponse getTagIndexResponse) {
+                try {
+                    GetTagIndexResponse response=blogApi.GetTagIndexResponse(getTagIndexResponse);
+                    return  Observable.just(response);
+                }catch (NetWorkException e){
+                    return  Observable.error(e);
+                }
+            }
+        }).subscribeOn(Schedulers.io())
                 .observeOn(AndroidSchedulers.mainThread());
     }
 }

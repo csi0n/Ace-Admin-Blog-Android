@@ -1,6 +1,7 @@
 package com.csi0n.blog.business.domain;
 
 import com.csi0n.blog.business.pojo.response.GetHomeIndexResponse;
+import com.csi0n.blog.business.pojo.response.GetTagIndexResponse;
 
 import rx.Observable;
 import rx.Observer;
@@ -11,4 +12,5 @@ import rx.Observer;
 
 public interface BlogDomain {
     Observable<GetHomeIndexResponse> GetHomeIndex();
+    Observable<GetTagIndexResponse> GetTagIndex();
 }

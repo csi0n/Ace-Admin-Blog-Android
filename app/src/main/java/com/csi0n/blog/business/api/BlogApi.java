@@ -2,6 +2,7 @@ package com.csi0n.blog.business.api;
 
 import com.csi0n.blog.business.pojo.request.GetHomeIndexRequest;
 import com.csi0n.blog.business.pojo.response.GetHomeIndexResponse;
+import com.csi0n.blog.business.pojo.response.GetTagIndexResponse;
 import com.csi0n.blog.core.net.NetWorkException;
 
 /**
@@ -10,4 +11,5 @@ import com.csi0n.blog.core.net.NetWorkException;
 
 public interface BlogApi {
     GetHomeIndexResponse GetHomeIndexResponse(GetHomeIndexRequest getHomeIndexRequest) throws NetWorkException;
+    GetTagIndexResponse GetTagIndexResponse(GetTagIndexResponse getTagIndexResponse)throws NetWorkException;
 }
