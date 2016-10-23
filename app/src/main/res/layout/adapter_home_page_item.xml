@@ -47,13 +47,14 @@
                 android:layout_width="wrap_content"
                 android:layout_height="wrap_content"
                 android:layout_marginTop="4dp"
+                android:textSize="@dimen/text_default_small_size"
                 android:maxLines="2"
                 android:textColor="@color/normal_gray"
                 tools:text="我是内容" />
 
             <me.gujun.android.taggroup.TagGroup
                 android:id="@+id/tag_group"
-                style="@style/TagGroup"
+                style="@style/TagGroup.Beauty_Red.Inverse"
                 android:layout_marginTop="8dp" />
         </LinearLayout>
 
