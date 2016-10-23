@@ -104,7 +104,7 @@
 
                 <me.gujun.android.taggroup.TagGroup
                     android:id="@+id/tag_group"
-                    style="@style/TagGroup"
+                    style="@style/TagGroup.Beauty_Red.Inverse"
                     android:padding="8dp" />
             </android.support.v7.widget.CardView>
 
