@@ -3,9 +3,14 @@ package com.csi0n.blog.business.api.retrofit;
 import android.util.Log;
 
 import com.csi0n.blog.business.api.BlogApi;
+import com.csi0n.blog.business.pojo.request.GetArticleSearchRequest;
 import com.csi0n.blog.business.pojo.request.GetHomeIndexRequest;
+import com.csi0n.blog.business.pojo.request.GetTagIndexRequest;
+import com.csi0n.blog.business.pojo.request.GetTagShowRequest;
+import com.csi0n.blog.business.pojo.response.GetArticleSearchResponse;
 import com.csi0n.blog.business.pojo.response.GetHomeIndexResponse;
 import com.csi0n.blog.business.pojo.response.GetTagIndexResponse;
+import com.csi0n.blog.business.pojo.response.GetTagShowResponse;
 import com.csi0n.blog.core.io.CLog;
 import com.csi0n.blog.core.io.FileUtils;
 import com.csi0n.blog.core.net.NetWorkException;
@@ -66,12 +71,34 @@ public class BlogApiRetrofitImpl implements BlogApi {
     }
 
     @Override
-    public GetTagIndexResponse GetTagIndexResponse(GetTagIndexResponse getTagIndexResponse) throws NetWorkException {
-        CLog.i("BlogApiRetrofitImpl.GetTagIndexResponse request = " + getTagIndexResponse);
+    public GetTagIndexResponse GetTagIndexResponse(GetTagIndexRequest getTagIndexRequest) throws NetWorkException {
+        CLog.i("BlogApiRetrofitImpl.GetTagIndexResponse request = " + getTagIndexRequest);
         return new RetrofitAdapter<GetTagIndexResponse>() {
             @Override
             GetTagIndexResponse call() throws Exception {
                 return httpApi.GetTagIndexResponse().execute().body();
+            }
+        }.get();
+    }
+
+    @Override
+    public GetTagShowResponse GetTagShowResponse(final GetTagShowRequest getTagShowRequest) throws NetWorkException {
+        CLog.i("BlogApiRetrofitImpl.GetTagShowResponse request = " + getTagShowRequest);
+        return new RetrofitAdapter<GetTagShowResponse>() {
+            @Override
+            GetTagShowResponse call() throws Exception {
+                return httpApi.GetTagShowResponse(getTagShowRequest.id).execute().body();
+            }
+        }.get();
+    }
+
+    @Override
+    public GetArticleSearchResponse GetArticleSearchResponse(final GetArticleSearchRequest getArticleSearchRequest) throws NetWorkException {
+        CLog.i("BlogApiRetrofitImpl.GetArticleSearchResponse request = " + getArticleSearchRequest);
+        return new RetrofitAdapter<GetArticleSearchResponse>() {
+            @Override
+            GetArticleSearchResponse call() throws Exception {
+                return httpApi.GetArticleSearchResponse(getArticleSearchRequest.key).execute().body();
             }
         }.get();
     }

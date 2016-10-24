@@ -25,6 +25,6 @@ public class BasePicCallback implements Callback {
 
     @Override
     public void onError() {
-        imageView.setImageResource(resource);
+        //imageView.setImageResource(resource);
     }
 }
