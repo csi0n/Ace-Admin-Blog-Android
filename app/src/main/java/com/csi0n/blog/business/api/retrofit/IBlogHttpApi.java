@@ -2,6 +2,7 @@ package com.csi0n.blog.business.api.retrofit;
 
 import com.csi0n.blog.business.pojo.request.GetHomeIndexRequest;
 import com.csi0n.blog.business.pojo.response.GetArticleSearchResponse;
+import com.csi0n.blog.business.pojo.response.GetCommentListsResponse;
 import com.csi0n.blog.business.pojo.response.GetHomeIndexResponse;
 import com.csi0n.blog.business.pojo.response.GetTagIndexResponse;
 import com.csi0n.blog.business.pojo.response.GetTagShowResponse;
@@ -27,4 +28,7 @@ public interface IBlogHttpApi {
 
     @GET("article/search/{key}")
     Call<GetArticleSearchResponse> GetArticleSearchResponse(@Path("key") String key);
+
+    @GET("comments/lists/{id}")
+    Call<GetCommentListsResponse> GetCommentsListsResponse(@Path("id") int id);
 }

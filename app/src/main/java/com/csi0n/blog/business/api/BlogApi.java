@@ -1,10 +1,12 @@
 package com.csi0n.blog.business.api;
 
 import com.csi0n.blog.business.pojo.request.GetArticleSearchRequest;
+import com.csi0n.blog.business.pojo.request.GetCommentListsRequest;
 import com.csi0n.blog.business.pojo.request.GetHomeIndexRequest;
 import com.csi0n.blog.business.pojo.request.GetTagIndexRequest;
 import com.csi0n.blog.business.pojo.request.GetTagShowRequest;
 import com.csi0n.blog.business.pojo.response.GetArticleSearchResponse;
+import com.csi0n.blog.business.pojo.response.GetCommentListsResponse;
 import com.csi0n.blog.business.pojo.response.GetHomeIndexResponse;
 import com.csi0n.blog.business.pojo.response.GetTagIndexResponse;
 import com.csi0n.blog.business.pojo.response.GetTagShowResponse;
@@ -22,4 +24,6 @@ public interface BlogApi {
     GetTagShowResponse GetTagShowResponse(GetTagShowRequest getTagShowRequest) throws NetWorkException;
 
     GetArticleSearchResponse GetArticleSearchResponse(GetArticleSearchRequest getArticleSearchRequest) throws NetWorkException;
+
+    GetCommentListsResponse GetCommentListsResponse(GetCommentListsRequest getCommentListsRequest) throws NetWorkException;
 }

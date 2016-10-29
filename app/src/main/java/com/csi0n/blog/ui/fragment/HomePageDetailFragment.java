@@ -6,6 +6,9 @@ import android.support.v4.widget.NestedScrollView;
 import android.support.v7.app.ActionBar;
 import android.support.v7.widget.CardView;
 import android.support.v7.widget.Toolbar;
+import android.view.Menu;
+import android.view.MenuInflater;
+import android.view.MenuItem;
 import android.view.View;
 import android.webkit.WebSettings;
 import android.webkit.WebView;
@@ -18,6 +21,7 @@ import com.csi0n.blog.core.string.Constants;
 import com.csi0n.blog.core.string.HtmlUtil;
 import com.csi0n.blog.ui.base.common.CommonExtraParam;
 import com.csi0n.blog.ui.base.common.CommonMvpFragment;
+import com.csi0n.blog.ui.base.common.FragmentLauncher;
 import com.csi0n.blog.ui.widget.BasePicCallback;
 import com.squareup.picasso.Picasso;
 
@@ -30,14 +34,14 @@ import me.gujun.android.taggroup.TagGroup;
  * Created by chqss on 2016/10/15.
  */
 
-public class HomePageDetailFragment extends CommonMvpFragment<HomePageDetailPresenter,HomePageDetailPresenter.IHomePageDetail> implements HomePageDetailPresenter.IHomePageDetail {
+public class HomePageDetailFragment extends CommonMvpFragment<HomePageDetailPresenter, HomePageDetailPresenter.IHomePageDetail> implements HomePageDetailPresenter.IHomePageDetail {
     @Override
     protected void init(Bundle savedInstanceState) {
-        extraParam=getReqExtraParam();
+        extraParam = getReqExtraParam();
         presenter.init(extraParam.article);
     }
 
-    public static class HomePageDetailExtraParam extends CommonExtraParam{
+    public static class HomePageDetailExtraParam extends CommonExtraParam {
         public Article article;
 
         @Override
@@ -47,6 +51,7 @@ public class HomePageDetailFragment extends CommonMvpFragment<HomePageDetailPres
                     '}';
         }
     }
+
     @Bind(R.id.iv_header)
     ImageView ivHeader;
     @Bind(R.id.tv_source)
@@ -65,6 +70,7 @@ public class HomePageDetailFragment extends CommonMvpFragment<HomePageDetailPres
     CardView cvTag;
 
     HomePageDetailExtraParam extraParam;
+
     @Override
     protected int getFragmentLayout() {
         return R.layout.frag_home_page_detail;
@@ -77,6 +83,7 @@ public class HomePageDetailFragment extends CommonMvpFragment<HomePageDetailPres
         ActionBar actionBar = mvpActivity.getSupportActionBar();
         if (actionBar != null) {
             actionBar.setDisplayHomeAsUpEnabled(true);
+            setHasOptionsMenu(true);
         }
         //setHasOptionsMenu(true);
         //mNestedScrollView.setElevation(0);
@@ -103,8 +110,32 @@ public class HomePageDetailFragment extends CommonMvpFragment<HomePageDetailPres
         Picasso.with(mvpActivity)
                 .load(Constants.BaseImgUrl + extraParam.article.thumb)
                 .placeholder(R.mipmap.ic_launcher)
-                .into(ivHeader, new BasePicCallback(ivHeader,R.mipmap.bg));
-        String html=HtmlUtil.createHtmlData(extraParam.article.content,extraParam.article.css);
+                .into(ivHeader, new BasePicCallback(ivHeader, R.mipmap.bg));
+        String html = HtmlUtil.createHtmlData(extraParam.article.content, extraParam.article.css);
         wvNews.loadData(html, HtmlUtil.MIME_TYPE, HtmlUtil.ENCODING);
+    }
+
+    @Override
+    public void onCreateOptionsMenu(Menu menu, MenuInflater inflater) {
+        inflater.inflate(R.menu.menu_detail, menu);
+        super.onCreateOptionsMenu(menu, inflater);
+    }
+
+    @Override
+    public boolean onOptionsItemSelected(MenuItem item) {
+        switch (item.getItemId()) {
+            case R.id.comments:
+                startComments(extraParam.article);
+                return true;
+            default:
+                return super.onOptionsItemSelected(item);
+        }
+    }
+
+    public void startComments(Article article) {
+        CommentsFragment.CommentsExtraParam extraParam = new CommentsFragment.CommentsExtraParam();
+        extraParam.setFragmentClass(CommentsFragment.class);
+        extraParam.article = article;
+        FragmentLauncher.launch(getContext(), extraParam);
     }
 }

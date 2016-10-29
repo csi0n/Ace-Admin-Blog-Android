@@ -4,10 +4,12 @@ import android.util.Log;
 
 import com.csi0n.blog.business.api.BlogApi;
 import com.csi0n.blog.business.pojo.request.GetArticleSearchRequest;
+import com.csi0n.blog.business.pojo.request.GetCommentListsRequest;
 import com.csi0n.blog.business.pojo.request.GetHomeIndexRequest;
 import com.csi0n.blog.business.pojo.request.GetTagIndexRequest;
 import com.csi0n.blog.business.pojo.request.GetTagShowRequest;
 import com.csi0n.blog.business.pojo.response.GetArticleSearchResponse;
+import com.csi0n.blog.business.pojo.response.GetCommentListsResponse;
 import com.csi0n.blog.business.pojo.response.GetHomeIndexResponse;
 import com.csi0n.blog.business.pojo.response.GetTagIndexResponse;
 import com.csi0n.blog.business.pojo.response.GetTagShowResponse;
@@ -99,6 +101,17 @@ public class BlogApiRetrofitImpl implements BlogApi {
             @Override
             GetArticleSearchResponse call() throws Exception {
                 return httpApi.GetArticleSearchResponse(getArticleSearchRequest.key).execute().body();
+            }
+        }.get();
+    }
+
+    @Override
+    public GetCommentListsResponse GetCommentListsResponse(final GetCommentListsRequest getCommentListsRequest) throws NetWorkException {
+        CLog.i("BlogApiRetrofitImpl.GetCommentListsRequest request = " + getCommentListsRequest);
+        return new RetrofitAdapter<GetCommentListsResponse>() {
+            @Override
+            GetCommentListsResponse call() throws Exception {
+                return httpApi.GetCommentsListsResponse(getCommentListsRequest.article_id).execute().body();
             }
         }.get();
     }

@@ -4,10 +4,12 @@ import com.csi0n.blog.business.api.BlogApi;
 import com.csi0n.blog.business.api.retrofit.IBlogHttpApi;
 import com.csi0n.blog.business.domain.BlogDomain;
 import com.csi0n.blog.business.pojo.request.GetArticleSearchRequest;
+import com.csi0n.blog.business.pojo.request.GetCommentListsRequest;
 import com.csi0n.blog.business.pojo.request.GetHomeIndexRequest;
 import com.csi0n.blog.business.pojo.request.GetTagIndexRequest;
 import com.csi0n.blog.business.pojo.request.GetTagShowRequest;
 import com.csi0n.blog.business.pojo.response.GetArticleSearchResponse;
+import com.csi0n.blog.business.pojo.response.GetCommentListsResponse;
 import com.csi0n.blog.business.pojo.response.GetHomeIndexResponse;
 import com.csi0n.blog.business.pojo.response.GetTagIndexResponse;
 import com.csi0n.blog.business.pojo.response.GetTagShowResponse;
@@ -83,6 +85,22 @@ public class BlogDomainImpl implements BlogDomain {
             public Observable<GetArticleSearchResponse> call(GetArticleSearchRequest getArticleSearchRequest) {
                 try {
                     GetArticleSearchResponse response = blogApi.GetArticleSearchResponse(getArticleSearchRequest);
+                    return Observable.just(response);
+                } catch (NetWorkException e) {
+                    return Observable.error(e);
+                }
+            }
+        }).subscribeOn(Schedulers.io())
+                .subscribeOn(AndroidSchedulers.mainThread());
+    }
+
+    @Override
+    public Observable<GetCommentListsResponse> GetCommentsLists(int article_id) {
+        return Observable.just(new GetCommentListsRequest(article_id)).flatMap(new Func1<GetCommentListsRequest, Observable<GetCommentListsResponse>>() {
+            @Override
+            public Observable<GetCommentListsResponse> call(GetCommentListsRequest getCommentListsRequest) {
+                try {
+                    GetCommentListsResponse response = blogApi.GetCommentListsResponse(getCommentListsRequest);
                     return Observable.just(response);
                 } catch (NetWorkException e) {
                     return Observable.error(e);

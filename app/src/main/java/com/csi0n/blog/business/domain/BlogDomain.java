@@ -1,6 +1,7 @@
 package com.csi0n.blog.business.domain;
 
 import com.csi0n.blog.business.pojo.response.GetArticleSearchResponse;
+import com.csi0n.blog.business.pojo.response.GetCommentListsResponse;
 import com.csi0n.blog.business.pojo.response.GetHomeIndexResponse;
 import com.csi0n.blog.business.pojo.response.GetTagIndexResponse;
 import com.csi0n.blog.business.pojo.response.GetTagShowResponse;
@@ -19,4 +20,6 @@ public interface BlogDomain {
     Observable<GetTagShowResponse> GetTagShow(int id);
 
     Observable<GetArticleSearchResponse> GetArticleSearch(String key);
+
+    Observable<GetCommentListsResponse> GetCommentsLists(int article_id);
 }
