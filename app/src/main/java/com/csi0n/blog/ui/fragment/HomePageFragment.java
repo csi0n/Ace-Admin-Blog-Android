@@ -1,15 +1,16 @@
 package com.csi0n.blog.ui.fragment;
 
+import android.graphics.Color;
 import android.os.Bundle;
 import android.support.v4.widget.SwipeRefreshLayout;
 import android.support.v7.widget.LinearLayoutManager;
 import android.support.v7.widget.RecyclerView;
 import android.view.View;
-
 import com.csi0n.blog.R;
 import com.csi0n.blog.business.pojo.model.Cate;
+import com.csi0n.blog.core.io.CLog;
 import com.csi0n.blog.core.string.Constants;
-import com.csi0n.blog.ui.adapter.HomePageAdapter;
+import com.csi0n.blog.ui.adapter.ArticleListAdapter;
 import com.csi0n.blog.ui.base.common.FragmentLauncher;
 import com.csi0n.blog.ui.base.mvp.MvpFragment;
 
@@ -26,7 +27,7 @@ public class HomePageFragment extends MvpFragment<HomePagePresenter, HomePagePre
     SwipeRefreshLayout swipeRefreshLayout;
 
 
-    HomePageAdapter adapter;
+    ArticleListAdapter adapter;
 
     Cate currentCate;
 
@@ -50,9 +51,11 @@ public class HomePageFragment extends MvpFragment<HomePagePresenter, HomePagePre
         currentCate = (Cate) getArguments().getSerializable(Constants.KEY_CATE);
         if (currentCate == null)
             return;
-        adapter = new HomePageAdapter(this);
+        adapter = new ArticleListAdapter(this);
         recyclerView.setLayoutManager(new LinearLayoutManager(getContext(), LinearLayoutManager.VERTICAL, false));
         recyclerView.setAdapter(adapter);
+
+
         swipeRefreshLayout.setColorSchemeResources(R.color.colorPrimary);
         swipeRefreshLayout.setOnRefreshListener(this);
         swipeRefreshLayout.setRefreshing(false);
@@ -60,10 +63,10 @@ public class HomePageFragment extends MvpFragment<HomePagePresenter, HomePagePre
     }
 
     public void startDetail(int position) {
-        HomePageDetailFragment.HomePageDetailExtraParam extraParam=new HomePageDetailFragment.HomePageDetailExtraParam();
+        HomePageDetailFragment.HomePageDetailExtraParam extraParam = new HomePageDetailFragment.HomePageDetailExtraParam();
         extraParam.setFragmentClass(HomePageDetailFragment.class);
-        extraParam.article=currentCate.articles[position];
-        FragmentLauncher.launch(getContext(),extraParam);
+        extraParam.article = currentCate.articles[position];
+        FragmentLauncher.launch(getContext(), extraParam);
     }
 
     @Override

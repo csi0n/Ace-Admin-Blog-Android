@@ -4,4 +4,7 @@
     <string name="network_disable">网络没有打开</string>
     <string name="login_in">登陆中...</string>
     <string name="loading">请稍等...</string>
+    <string name="rd_home">首页</string>
+    <string name="rd_tag">标签</string>
+    <string name="comments">评论</string>
 </resources>

@@ -28,8 +28,6 @@ import butterknife.Bind;
  */
 
 public class HomeFragment extends MvpFragment<HomePresenter, HomePresenter.IHome> implements HomePresenter.IHome {
-    @Bind(R.id.toolbar)
-    Toolbar toolbar;
     @Bind(R.id.tabs)
     TabLayout tabs;
     @Bind(R.id.view_pager)

@@ -1,7 +1,6 @@
 package com.csi0n.blog.app;
 
 import android.app.Application;
-
 import com.csi0n.blog.core.string.Constants;
 import com.csi0n.blog.core.io.SharePreferenceManager;
 

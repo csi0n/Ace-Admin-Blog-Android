@@ -67,7 +67,8 @@ public abstract class BaseActivity extends RoboActionBarActivity implements ILoa
 
     @Override
     public void showLoading() {
-        loading = new ProgressLoading(this, R.string.loading);
+        if (loading == null)
+            loading = new ProgressLoading(this, R.string.loading);
         loading.show();
     }
 

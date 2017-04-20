@@ -1,11 +1,68 @@
 <?xml version="1.0" encoding="utf-8"?>
 <RelativeLayout xmlns:android="http://schemas.android.com/apk/res/android"
     android:layout_width="match_parent"
-    android:background="@color/white"
-    android:layout_height="match_parent">
+    android:layout_height="match_parent"
+    xmlns:app="http://schemas.android.com/apk/res-auto"
+    android:background="@color/main_back">
+
+    <!--<RelativeLayout-->
+        <!--android:id="@+id/tl_top"-->
+        <!--android:layout_width="match_parent"-->
+        <!--android:layout_height="50dp"-->
+        <!--android:background="@color/colorPrimary">-->
+
+        <!--<TextView-->
+            <!--android:id="@+id/tv_title"-->
+            <!--android:layout_width="wrap_content"-->
+            <!--android:layout_height="wrap_content"-->
+            <!--android:layout_centerHorizontal="true"-->
+            <!--android:layout_centerVertical="true"-->
+            <!--android:layout_marginBottom="14dp"-->
+            <!--android:text="@string/blog"-->
+            <!--android:textColor="@color/white" />-->
+
+    <!--</RelativeLayout>-->
+    <android.support.v7.widget.Toolbar
+        android:id="@+id/toolbar"
+        android:layout_width="match_parent"
+        android:layout_height="?attr/actionBarSize"
+        android:background="@color/colorPrimary"
+        android:theme="@style/ThemeOverlay.AppCompat.Dark.ActionBar"
+        app:popupTheme="@style/ThemeOverlay.AppCompat.Light" />
+
 
     <FrameLayout
         android:id="@+id/fl_body"
         android:layout_width="match_parent"
-        android:layout_height="match_parent" />
+        android:layout_height="match_parent"
+        android:layout_above="@+id/rg_bottom"
+        android:layout_below="@+id/toolbar"
+        android:layout_marginBottom="1dp" />
+
+    <RadioGroup
+        android:id="@+id/rg_bottom"
+        android:layout_width="match_parent"
+        android:layout_height="50dp"
+        android:layout_alignParentBottom="true"
+        android:background="@color/white"
+        android:orientation="horizontal">
+
+        <RadioButton
+            android:id="@+id/rd_home"
+            style="@style/style_main_bottom_bar"
+            android:checked="true"
+            android:drawableTop="@drawable/rd_select_home"
+            android:text="@string/rd_home" />
+
+        <RadioButton
+            android:id="@+id/rd_tag"
+            style="@style/style_main_bottom_bar"
+            android:drawableTop="@drawable/rd_select_tag"
+            android:text="@string/rd_tag" />
+    </RadioGroup>
+    <br.com.mauker.materialsearchview.MaterialSearchView
+        android:id="@+id/search_view"
+        android:layout_width="match_parent"
+        android:layout_height="match_parent"
+        style="@style/MaterialSearchViewStyle"/>
 </RelativeLayout>

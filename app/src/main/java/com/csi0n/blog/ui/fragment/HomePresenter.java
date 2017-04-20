@@ -21,13 +21,17 @@ public class HomePresenter extends BaseMvpPresenter<HomePresenter.IHome> {
     BlogDomain blogDomain;
 
     public void doGetHomeIndex(ILoadDataView iLoadDataView) {
-        blogDomain.GetHomeIndex().subscribe(new AdvancedSubscriber<GetHomeIndexResponse>(iLoadDataView) {
+        doGetHomeIndex().subscribe(new AdvancedSubscriber<GetHomeIndexResponse>(iLoadDataView) {
             @Override
             public void onHandleSuccess(GetHomeIndexResponse response) {
                 super.onHandleSuccess(response);
                 view.onGetHome(response);
             }
         });
+    }
+
+    public Observable<GetHomeIndexResponse> doGetHomeIndex() {
+        return blogDomain.GetHomeIndex();
     }
 
     public interface IHome extends IMvpView {
