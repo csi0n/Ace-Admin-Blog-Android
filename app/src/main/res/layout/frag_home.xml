@@ -7,6 +7,7 @@
     android:orientation="vertical">
 
     <LinearLayout
+        android:layout_marginTop="1dp"
         android:layout_width="match_parent"
         android:layout_height="wrap_content"
         android:background="@color/colorPrimary"
@@ -15,13 +16,12 @@
         <android.support.design.widget.TabLayout
             android:id="@+id/tabs"
             android:layout_width="match_parent"
-            android:layout_height="wrap_content"
-            android:layout_weight="1"
-            app:tabBackground="@color/colorPrimary"
-            app:tabIndicatorColor="@color/white"
-            app:tabMode="scrollable"
-            app:tabTextColor="@color/white"
-            app:textAllCaps="false"></android.support.design.widget.TabLayout>
+            android:layout_height="40dp"
+            android:background="@color/white"
+            app:tabIndicatorColor="@color/colorPrimaryDark"
+            app:tabSelectedTextColor="@color/colorPrimaryDark"
+            app:tabTextColor="#9B9B9B"
+             />
 
     </LinearLayout>
 

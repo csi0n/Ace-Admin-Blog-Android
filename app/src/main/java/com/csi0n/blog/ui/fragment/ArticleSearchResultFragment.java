@@ -9,6 +9,7 @@ import android.support.v7.widget.Toolbar;
 import android.view.LayoutInflater;
 import android.view.View;
 import android.view.ViewGroup;
+import android.widget.RelativeLayout;
 
 import com.csi0n.blog.R;
 import com.csi0n.blog.business.pojo.response.GetArticleSearchResponse;
@@ -32,6 +33,8 @@ public class ArticleSearchResultFragment extends CommonMvpFragment<ArticleSearch
     RecyclerView recyclerView;
     @Bind(R.id.swipeRefreshLayout)
     SwipeRefreshLayout swipeRefreshLayout;
+    @Bind(R.id.empty)
+    RelativeLayout mEmptyLayout;
 
     ArticleListAdapter adapter;
 
@@ -85,6 +88,11 @@ public class ArticleSearchResultFragment extends CommonMvpFragment<ArticleSearch
             public void run() {
                 swipeRefreshLayout.setRefreshing(false);
                 adapter.notifyDataSetChanged(getArticleSearchResponse.articles);
+                if (getArticleSearchResponse.articles.length <= 0) {
+                    recyclerView.setVisibility(View.GONE);
+                    swipeRefreshLayout.setVisibility(View.GONE);
+                    mEmptyLayout.setVisibility(View.VISIBLE);
+                }
             }
         });
     }

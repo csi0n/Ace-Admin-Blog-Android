@@ -6,6 +6,8 @@ import android.support.v4.widget.SwipeRefreshLayout;
 import android.support.v7.widget.LinearLayoutManager;
 import android.support.v7.widget.RecyclerView;
 import android.view.View;
+import android.widget.RelativeLayout;
+
 import com.csi0n.blog.R;
 import com.csi0n.blog.business.pojo.model.Cate;
 import com.csi0n.blog.core.io.CLog;
@@ -13,6 +15,7 @@ import com.csi0n.blog.core.string.Constants;
 import com.csi0n.blog.ui.adapter.ArticleListAdapter;
 import com.csi0n.blog.ui.base.common.FragmentLauncher;
 import com.csi0n.blog.ui.base.mvp.MvpFragment;
+import com.csi0n.blog.ui.widget.RecyclerViewWithEmpty;
 
 import butterknife.Bind;
 
@@ -25,7 +28,8 @@ public class HomePageFragment extends MvpFragment<HomePagePresenter, HomePagePre
     RecyclerView recyclerView;
     @Bind(R.id.swipeRefreshLayout)
     SwipeRefreshLayout swipeRefreshLayout;
-
+    @Bind(R.id.empty)
+    RelativeLayout mEmptyLayout;
 
     ArticleListAdapter adapter;
 
@@ -60,6 +64,11 @@ public class HomePageFragment extends MvpFragment<HomePagePresenter, HomePagePre
         swipeRefreshLayout.setOnRefreshListener(this);
         swipeRefreshLayout.setRefreshing(false);
         adapter.notifyDataSetChanged(currentCate.articles);
+        if (currentCate.articles.length <= 0) {
+            recyclerView.setVisibility(View.GONE);
+            swipeRefreshLayout.setVisibility(View.GONE);
+            mEmptyLayout.setVisibility(View.VISIBLE);
+        }
     }
 
     public void startDetail(int position) {

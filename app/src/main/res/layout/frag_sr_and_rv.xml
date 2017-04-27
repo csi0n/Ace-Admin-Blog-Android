@@ -17,5 +17,15 @@
             android:layout_height="match_parent"
             android:background="@color/grey" />
     </android.support.v4.widget.SwipeRefreshLayout>
+    <RelativeLayout
+        android:id="@+id/empty"
+        android:visibility="gone"
+        android:layout_width="match_parent"
+        android:layout_height="match_parent">
 
+        <include
+            layout="@layout/view_recyclerview_with_empty"
+            android:layout_width="match_parent"
+            android:layout_height="match_parent" />
+    </RelativeLayout>
 </LinearLayout>

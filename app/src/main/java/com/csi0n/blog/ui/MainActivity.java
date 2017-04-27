@@ -34,15 +34,6 @@ public class MainActivity extends MvpActivity<MainPresenter, MainPresenter.IMain
     MaterialSearchView searchView;
     private HomeFragment homeFragment;
 
-    private TagFragment tagFragment;
-
-    @Bind(R.id.rg_bottom)
-    RadioGroup bottom;
-    @Bind(R.id.rd_home)
-    RadioButton rdHome;
-    @Bind(R.id.rd_tag)
-    RadioButton rdTag;
-
     @Override
     protected int GetConLayout() {
         return R.layout.aty_main;
@@ -52,7 +43,6 @@ public class MainActivity extends MvpActivity<MainPresenter, MainPresenter.IMain
     public void afterMvpInit(Bundle savedInstanceState) {
         super.afterMvpInit(savedInstanceState);
         setSupportActionBar(toolbar);
-        bottom.setOnCheckedChangeListener(onCheckedChangeListener);
         initFragment(savedInstanceState);
         searchView.setOnQueryTextListener(onQueryTextListener);
         searchView.setSearchViewListener(searchViewListener);
@@ -94,30 +84,14 @@ public class MainActivity extends MvpActivity<MainPresenter, MainPresenter.IMain
         }
     };
 
-    private RadioGroup.OnCheckedChangeListener onCheckedChangeListener = new RadioGroup.OnCheckedChangeListener() {
-        @Override
-        public void onCheckedChanged(RadioGroup radioGroup, int i) {
-            RadioButton button = (RadioButton) findViewById(i);
-            if (button == rdHome) {
-                currentFragment(0);
-            } else if (button == rdTag) {
-                currentFragment(1);
-            }
-        }
-    };
-
     private void initFragment(Bundle savedInstanceState) {
         FragmentTransaction transaction = getSupportFragmentManager().beginTransaction();
         int currentTabPosition = 0;
         if (savedInstanceState != null) {
             homeFragment = (HomeFragment) getSupportFragmentManager().findFragmentByTag("homeFragment");
-            tagFragment = (TagFragment) getSupportFragmentManager().findFragmentByTag("tagFragment");
         } else {
             homeFragment = new HomeFragment();
-            tagFragment = new TagFragment();
-
             transaction.add(R.id.fl_body, homeFragment, "homeFragment");
-            transaction.add(R.id.fl_body, tagFragment, "tagFragment");
         }
         transaction.commit();
         currentFragment(currentTabPosition);
@@ -127,13 +101,11 @@ public class MainActivity extends MvpActivity<MainPresenter, MainPresenter.IMain
         FragmentTransaction transaction = getSupportFragmentManager().beginTransaction();
         switch (position) {
             case 0:
-                transaction.hide(tagFragment);
                 transaction.show(homeFragment);
                 transaction.commitAllowingStateLoss();
                 break;
             case 1:
                 transaction.hide(homeFragment);
-                transaction.show(tagFragment);
                 transaction.commitAllowingStateLoss();
                 break;
             default:
